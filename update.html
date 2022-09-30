@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    <h1>Update</h1>
+
+    <form action="/update/{{takmicar.get_broj_prijave()}}" method="POST">
+
+        <p>
+            <label for="broj_prijave">Broj prijave</label>
+            <input type="text" name="broj_prijave" readonly value="{{takmicar.get_broj_prijave()}}">
+             <span class="greska">{{prijava_greska}}</span>
+        </p>  
+
+        <p>
+            <label for="ime_prezime">Ime i prezime</label>
+            <input type="text" name="ime_prezime" readonly value="{{takmicar.get_ime_prezime()}}">
+            <span class="greska">{{ime_prezime_greska}}</span>
+        </p>   
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" value="dsijacic@raf.rs" name="email" value="{{takmicar.get_email()}}">
+            <span class="greska">{{email_greska}}</span>
+        </p>
+
+        <p>
+            <label for="sifra">Sifra</label>
+            <input type="password" name="sifra" value="">
+            <span class="greska">{{sifra_greska}}</span>
+        </p>
+
+
+        <p>
+            <label for="matematika">Matematika</label>
+            <input type="number" name="matematika" value="{{takmicar.get_matematika()}}">
+            <span class="greska">{{matematika_greska}}</span>
+
+        </p>
+
+        <p>
+            <label for="programiranje">Programiranje</label>
+            <input type="number" name="programiranje" value="{{takmicar.get_programiranje()}}">
+            <span class="greska">{{programiranje_greska}}</span>
+
+        </p>
+
+        <input type="submit" value="Prijavi se">
+    </form>
+</body>
+</html>

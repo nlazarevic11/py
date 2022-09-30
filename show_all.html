@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if "broj_prijave" in session %}
+        <a href="/profil/{{session['broj_prijave']}}">Moj profil</a>
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    {% endif %}
+    {% for t in takmicari %}
+        <p>{{t}}</p>
+    {% endfor %}
+
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>BROJ_PRIJAVE</th>
+                <th>IME I PREZIME</th>
+                <th>EMAIL</th>
+                <th>SIFRA</th>
+                <th>MATEMATIKA</th>
+                <th>PROGRAMIRANJE</th>
+                <th>Total</th>
+                {% if 'broj_prijave' in session %}
+                <th>OPCIJE</th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for t in takmicari %}
+            <tr>
+                <td>{{t.get_id()}}</td>
+                <td><a href="/profil/{{t.get_broj_prijave()}}">{{t.get_broj_prijave()}}</a></td>
+                <td>{{t.get_ime_prezime()}}</td>
+                <td>{{t.get_email()}}</td>
+                <td>{{t.get_sifra()}}</td>
+                <td>{{t.get_matematika()}}</td>
+                <td>{{t.get_programiranje()}}</td>
+                <td>{{t.ukupan_broj_poena()}}</td>
+                {% if 'broj_prijave' in session %}
+                <td> <a href="/update/{{t.get_broj_prijave()}}">Update</a></td>
+                <td>
+                    <form action="/delete/{{t.get_broj_prijave()}}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+                {% endif %}
+                {% if session['broj_prijave'] == t.get_broj_prijave()%}
+                <td> <a href="/update/{{t.get_broj_prijave()}}">Update</a></td>
+                <td>
+                    <form action="/delete/{{t.get_broj_prijave()}}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+                {% endif %}
+
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
